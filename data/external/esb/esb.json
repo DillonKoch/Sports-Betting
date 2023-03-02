@@ -1,0 +1,137 @@
+{
+    "Date": {
+        "type": "Date",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Game_Time": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "\\d{2}:\\d{2} C(S|D)T",
+        "allow_null": false
+    },
+    "Home": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Over": {
+        "type": "float",
+        "min": 0,
+        "max": 300,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Over_ML": {
+        "type": "float",
+        "min": null,
+        "max": null,
+        "ranges": [[-200, -100], [100,200]],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Under": {
+        "type": "float",
+        "min": 0,
+        "max": 300,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Under_ML": {
+        "type": "float",
+        "min": null,
+        "max": null,
+        "ranges": [[-200, -100], [100,200]],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Line": {
+        "type": "float",
+        "min": -100,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Line_ML": {
+        "type": "float",
+        "min": null,
+        "max": null,
+        "ranges": [[-200, -100], [100,200]],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Line": {
+        "type": "float",
+        "min": -100,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Line_ML": {
+        "type": "float",
+        "min": null,
+        "max": null,
+        "ranges": [[-200, -100], [100,200]],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_ML": {
+        "type": "float",
+        "min": -100000,
+        "max": 100000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_ML": {
+        "type": "float",
+        "min": -100000,
+        "max": 100000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "scraped_ts": {
+        "type": "Datetime",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    }
+}

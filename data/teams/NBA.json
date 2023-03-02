@@ -1,0 +1,319 @@
+{
+    "Teams": {
+        "Boston Celtics": {
+            "Conference": "Atlantic",
+            "Other Names": [
+                "Boston"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/bos/boston-celtics",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/bos",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/bos/boston-celtics",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/bos"
+        },
+        "Brooklyn Nets": {
+            "Conference": "Atlantic",
+            "Other Names": [
+                "NewJersey",
+                "Brooklyn",
+                "New Jersey Nets"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/bkn/brooklyn-nets",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/bkn",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/bkn/brooklyn-nets",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/bkn"
+        },
+        "New York Knicks": {
+            "Conference": "Atlantic",
+            "Other Names": [
+                "NewYork",
+                "New York"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/ny/new-york-knicks",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/ny",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/ny/new-york-knicks",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/ny"
+        },
+        "Philadelphia 76ers": {
+            "Conference": "Atlantic",
+            "Other Names": [
+                "Philadelphia"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/phi/philadelphia-76ers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/phi",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/phi/philadelphia-76ers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/phi"
+        },
+        "Toronto Raptors": {
+            "Conference": "Atlantic",
+            "Other Names": [
+                "Toronto"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/tor/toronto-raptors",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/tor",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/tor/toronto-raptors",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/tor"
+        },
+        "Chicago Bulls": {
+            "Conference": "Central",
+            "Other Names": [
+                "Chicago"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/chi/chicago-bulls",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/chi",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/chi/chicago-bulls",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/chi"
+        },
+        "Cleveland Cavaliers": {
+            "Conference": "Central",
+            "Other Names": [
+                "Cleveland"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/cle/cleveland-cavaliers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/cle",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/cle/cleveland-cavaliers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/cle"
+        },
+        "Detroit Pistons": {
+            "Conference": "Central",
+            "Other Names": [
+                "Detroit"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/det/detroit-pistons",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/det",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/det/detroit-pistons",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/det"
+        },
+        "Indiana Pacers": {
+            "Conference": "Central",
+            "Other Names": [
+                "Indiana"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/ind/indiana-pacers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/ind",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/ind/indiana-pacers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/ind"
+        },
+        "Milwaukee Bucks": {
+            "Conference": "Central",
+            "Other Names": [
+                "Milwaukee"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/mil/milwaukee-bucks",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/mil",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/mil/milwaukee-bucks",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/mil"
+        },
+        "Denver Nuggets": {
+            "Conference": "Northwest",
+            "Other Names": [
+                "Denver"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/den/denver-nuggets",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/den",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/den/denver-nuggets",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/den"
+        },
+        "Minnesota Timberwolves": {
+            "Conference": "Northwest",
+            "Other Names": [
+                "Minnesota"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/min/minnesota-timberwolves",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/min",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/min/minnesota-timberwolves",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/min"
+        },
+        "Oklahoma City Thunder": {
+            "Conference": "Northwest",
+            "Other Names": [
+                "Seattle",
+                "Seattle SuperSonics",
+                "OklahomaCity",
+                "Oklahoma City"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/okc/oklahoma-city-thunder",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/okc",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/okc/oklahoma-city-thunder",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/okc"
+        },
+        "Portland Trail Blazers": {
+            "Conference": "Northwest",
+            "Other Names": [
+                "Portland"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/por/portland-trail-blazers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/por",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/por/portland-trail-blazers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/por"
+        },
+        "Utah Jazz": {
+            "Conference": "Northwest",
+            "Other Names": [
+                "Utah"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/utah/utah-jazz",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/utah",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/utah/utah-jazz",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/utah"
+        },
+        "Golden State Warriors": {
+            "Conference": "Pacific",
+            "Other Names": [
+                "GoldenState",
+                "Golden State"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/gs/golden-state-warriors",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/gs",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/gs/golden-state-warriors",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/gs"
+        },
+        "LA Clippers": {
+            "Conference": "Pacific",
+            "Other Names": [
+                "LAClippers",
+                "Los Angeles Clippers",
+                "Los Angeles Clippers"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/lac/la-clippers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/lac",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/lac/la-clippers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/lac"
+        },
+        "Los Angeles Lakers": {
+            "Conference": "Pacific",
+            "Other Names": [
+                "LALakers",
+                "LA Lakers"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/lal/los-angeles-lakers",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/lal",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/lal/los-angeles-lakers",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/lal"
+        },
+        "Phoenix Suns": {
+            "Conference": "Pacific",
+            "Other Names": [
+                "Phoenix"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/phx/phoenix-suns",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/phx",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/phx/phoenix-suns",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/phx"
+        },
+        "Sacramento Kings": {
+            "Conference": "Pacific",
+            "Other Names": [
+                "Sacramento"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/sac/sacramento-kings",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/sac",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/sac/sacramento-kings",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/sac"
+        },
+        "Atlanta Hawks": {
+            "Conference": "Southeast",
+            "Other Names": [
+                "Atlanta"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/atl/atlanta-hawks",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/atl",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/atl/atlanta-hawks",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/atl"
+        },
+        "Charlotte Hornets": {
+            "Conference": "Southeast",
+            "Other Names": [
+                "Charlotte",
+                "Charlotte Bobcats"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/cha/charlotte-hornets",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/cha",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/cha/charlotte-hornets",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/cha"
+        },
+        "Miami Heat": {
+            "Conference": "Southeast",
+            "Other Names": [
+                "Miami"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/mia/miami-heat",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/mia",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/mia/miami-heat",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/mia"
+        },
+        "Orlando Magic": {
+            "Conference": "Southeast",
+            "Other Names": [
+                "Orlando"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/orl/orlando-magic",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/orl",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/orl/orlando-magic",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/orl"
+        },
+        "Washington Wizards": {
+            "Conference": "Southeast",
+            "Other Names": [
+                "Washington"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/wsh/washington-wizards",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/wsh",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/wsh/washington-wizards",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/wsh"
+        },
+        "Dallas Mavericks": {
+            "Conference": "Southwest",
+            "Other Names": [
+                "Dallas"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/dal/dallas-mavericks",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/dal",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/dal/dallas-mavericks",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/dal"
+        },
+        "Houston Rockets": {
+            "Conference": "Southwest",
+            "Other Names": [
+                "Houston"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/hou/houston-rockets",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/hou",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/hou/houston-rockets",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/hou"
+        },
+        "Memphis Grizzlies": {
+            "Conference": "Southwest",
+            "Other Names": [
+                "Memphis"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/mem/memphis-grizzlies",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/mem",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/mem/memphis-grizzlies",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/mem"
+        },
+        "New Orleans Pelicans": {
+            "Conference": "Southwest",
+            "Other Names": [
+                "NewOrleans",
+                "New Orleans Hornets",
+                "New Orleans"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/no/new-orleans-pelicans",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/no",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/no/new-orleans-pelicans",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/no"
+        },
+        "San Antonio Spurs": {
+            "Conference": "Southwest",
+            "Other Names": [
+                "SanAntonio",
+                "San Antonio"
+            ],
+            "Statistics": "https://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs",
+            "Schedule": "https://www.espn.com/nba/team/schedule/_/name/sa",
+            "Roster": "https://www.espn.com/nba/team/roster/_/name/sa/san-antonio-spurs",
+            "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/sa"
+        }
+    },
+    "Other Teams": []
+}

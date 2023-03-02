@@ -1,0 +1,38 @@
+{
+    "Team": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player_ID": {
+        "type": "int",
+        "min": 0,
+        "max": 100000000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "scrape_ts": {
+        "type": "Datetime",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    }
+}

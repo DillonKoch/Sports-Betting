@@ -1,0 +1,353 @@
+{
+    "Teams": {
+        "Buffalo Bills": {
+            "Conference": "AFC East",
+            "Other Names": [
+                "BuffaloBills",
+                "Buffalo"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/buf/buffalo-bills",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/buf",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/buf/buffalo-bills",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/buf"
+        },
+        "Miami Dolphins": {
+            "Conference": "AFC East",
+            "Other Names": [
+                "Miami"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/mia/miami-dolphins",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/mia",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/mia/miami-dolphins",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/mia"
+        },
+        "New England Patriots": {
+            "Conference": "AFC East",
+            "Other Names": [
+                "New England",
+                "NewEngland"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/ne/new-england-patriots",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/ne",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/ne/new-england-patriots",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/ne"
+        },
+        "New York Jets": {
+            "Conference": "AFC East",
+            "Other Names": [
+                "NYJets",
+                "NY Jets"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/nyj/new-york-jets",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/nyj",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/nyj/new-york-jets",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/nyj"
+        },
+        "Baltimore Ravens": {
+            "Conference": "AFC North",
+            "Other Names": [
+                "Baltimore"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/bal/baltimore-ravens",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/bal",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/bal/baltimore-ravens",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/bal"
+        },
+        "Cincinnati Bengals": {
+            "Conference": "AFC North",
+            "Other Names": [
+                "Cincinnati"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/cin/cincinnati-bengals",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/cin",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/cin/cincinnati-bengals",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/cin"
+        },
+        "Cleveland Browns": {
+            "Conference": "AFC North",
+            "Other Names": [
+                "Cleveland"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/cle/cleveland-browns",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/cle",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/cle/cleveland-browns",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/cle"
+        },
+        "Pittsburgh Steelers": {
+            "Conference": "AFC North",
+            "Other Names": [
+                "Pittsburgh"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/pit/pittsburgh-steelers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/pit",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/pit/pittsburgh-steelers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/pit"
+        },
+        "Houston Texans": {
+            "Conference": "AFC South",
+            "Other Names": [
+                "Houston",
+                "HoustonTexans"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/hou/houston-texans",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/hou",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/hou/houston-texans",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/hou"
+        },
+        "Indianapolis Colts": {
+            "Conference": "AFC South",
+            "Other Names": [
+                "Indianapolis"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/ind/indianapolis-colts",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/ind",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/ind/indianapolis-colts",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/ind"
+        },
+        "Jacksonville Jaguars": {
+            "Conference": "AFC South",
+            "Other Names": [
+                "Jacksonville"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/jax/jacksonville-jaguars",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/jax",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/jax/jacksonville-jaguars",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/jax"
+        },
+        "Tennessee Titans": {
+            "Conference": "AFC South",
+            "Other Names": [
+                "Tennessee"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/ten/tennessee-titans",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/ten",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/ten/tennessee-titans",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/ten"
+        },
+        "Denver Broncos": {
+            "Conference": "AFC West",
+            "Other Names": [
+                "Denver"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/den/denver-broncos",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/den",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/den/denver-broncos",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/den"
+        },
+        "Kansas City Chiefs": {
+            "Conference": "AFC West",
+            "Other Names": [
+                "Kansas",
+                "Kansas City",
+                "KCChiefs",
+                "KansasCity"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/kc/kansas-city-chiefs",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/kc",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/kc/kansas-city-chiefs",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/kc"
+        },
+        "Las Vegas Raiders": {
+            "Conference": "AFC West",
+            "Other Names": [
+                "LasVegas",
+                "Oakland Raiders",
+                "Oakland",
+                "LVRaiders",
+                "Las Vegas"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/lv/las-vegas-raiders",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/lv",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/lv/las-vegas-raiders",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/lv"
+        },
+        "Los Angeles Chargers": {
+            "Conference": "AFC West",
+            "Other Names": [
+                "LA Chargers",
+                "SanDiego",
+                "San Diego",
+                "San Diego Chargers",
+                "LAChargers"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/lac/los-angeles-chargers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/lac",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/lac/los-angeles-chargers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/lac"
+        },
+        "Dallas Cowboys": {
+            "Conference": "NFC East",
+            "Other Names": [
+                "Dallas"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/dal/dallas-cowboys",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/dal/dallas-cowboys",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/dal"
+        },
+        "New York Giants": {
+            "Conference": "NFC East",
+            "Other Names": [
+                "NY Giants",
+                "NYGiants"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/nyg/new-york-giants",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/nyg",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/nyg/new-york-giants",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/nyg"
+        },
+        "Philadelphia Eagles": {
+            "Conference": "NFC East",
+            "Other Names": [
+                "Philadelphia"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/phi/philadelphia-eagles",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/phi",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/phi/philadelphia-eagles",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/phi"
+        },
+        "Washington": {
+            "Conference": "NFC East",
+            "Other Names": [
+                "Washingtom",
+                "Washington Washington",
+                "Washington Football Team",
+                "Washington Football Team",
+                "Washington Commanders"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/wsh/washington",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/wsh",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/wsh/washington",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/wsh"
+        },
+        "Chicago Bears": {
+            "Conference": "NFC North",
+            "Other Names": [
+                "Chicago"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/chi/chicago-bears",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/chi",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/chi/chicago-bears",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/chi"
+        },
+        "Detroit Lions": {
+            "Conference": "NFC North",
+            "Other Names": [
+                "Detroit"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/det/detroit-lions",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/det",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/det/detroit-lions",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/det"
+        },
+        "Green Bay Packers": {
+            "Conference": "NFC North",
+            "Other Names": [
+                "GreenBay",
+                "Green Bay"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/gb/green-bay-packers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/gb",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/gb/green-bay-packers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/gb"
+        },
+        "Minnesota Vikings": {
+            "Conference": "NFC North",
+            "Other Names": [
+                "Minnesota"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/min/minnesota-vikings",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/min",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/min/minnesota-vikings",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/min"
+        },
+        "Atlanta Falcons": {
+            "Conference": "NFC South",
+            "Other Names": [
+                "Atlanta"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/atl/atlanta-falcons",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/atl",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/atl/atlanta-falcons",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/atl"
+        },
+        "Carolina Panthers": {
+            "Conference": "NFC South",
+            "Other Names": [
+                "Carolina"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/car/carolina-panthers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/car",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/car/carolina-panthers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/car"
+        },
+        "New Orleans Saints": {
+            "Conference": "NFC South",
+            "Other Names": [
+                "NewOrleans",
+                "New Orleans"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/no/new-orleans-saints",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/no",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/no/new-orleans-saints",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/no"
+        },
+        "Tampa Bay Buccaneers": {
+            "Conference": "NFC South",
+            "Other Names": [
+                "TampaBay",
+                "Tampa Bay",
+                "Tampa"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/tb/tampa-bay-buccaneers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/tb",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/tb/tampa-bay-buccaneers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/tb"
+        },
+        "Arizona Cardinals": {
+            "Conference": "NFC West",
+            "Other Names": [
+                "Arizona"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/ari/arizona-cardinals",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/ari",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/ari/arizona-cardinals",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/ari"
+        },
+        "Los Angeles Rams": {
+            "Conference": "NFC West",
+            "Other Names": [
+                "St.Louis",
+                "LA Rams",
+                "LosAngeles",
+                "LARams"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/lar/los-angeles-rams",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/lar",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/lar/los-angeles-rams",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/lar"
+        },
+        "San Francisco 49ers": {
+            "Conference": "NFC West",
+            "Other Names": [
+                "SanFrancisco",
+                "San Francisco"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/sf/san-francisco-49ers",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/sf",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/sf/san-francisco-49ers",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/sf"
+        },
+        "Seattle Seahawks": {
+            "Conference": "NFC West",
+            "Other Names": [
+                "Seattle"
+            ],
+            "Statistics": "https://www.espn.com/nfl/team/stats/_/name/sea/seattle-seahawks",
+            "Schedule": "https://www.espn.com/nfl/team/schedule/_/name/sea",
+            "Roster": "https://www.espn.com/nfl/team/roster/_/name/sea/seattle-seahawks",
+            "Depth Chart": "https://www.espn.com/nfl/team/depth/_/name/sea"
+        }
+    },
+    "Other Teams": []
+}
