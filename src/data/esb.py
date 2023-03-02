@@ -30,6 +30,7 @@ if ROOT_PATH not in sys.path:
 
 from src.utilities.misc import leagues
 from src.utilities.test_data_schema import Test_Data_Schema
+from src.utilities.match_team import Match_Team
 
 
 def mfloat(val):
@@ -49,6 +50,7 @@ class ESB:
         self.link = link_dict[league]
         self.scrape_ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
         self.df_path = ROOT_PATH + f"/data/external/esb/{self.league}/Game_Lines.csv"
+        self.match_team = Match_Team(league)
         self.test_data_schema = Test_Data_Schema(league)
 
     def get_sp1(self):  # Top Level
@@ -94,8 +96,10 @@ class ESB:
         """
         away = event.find_all('span', attrs={'id': ['firstTeamName', 'awayTeamName']})
         away = away[0].get_text()
+        away = self.match_team.run(away)
         home = event.find_all('span', attrs={'id': ['secondTeamName', 'homeTeamName']})
         home = home[0].get_text()
+        home = self.match_team.run(home)
         return home, away
 
     def _moneylines_match(self, text):  # Helping Helper _moneylines

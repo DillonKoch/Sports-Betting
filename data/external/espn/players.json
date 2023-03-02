@@ -1,0 +1,173 @@
+{
+    "Player_ID": {
+        "type": "int",
+        "min": 0,
+        "max": 10000000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Team": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Number": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Position": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Height": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Weight": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Birth_Date": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Birth_Place": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "College": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Draft_Year": {
+        "type": "float",
+        "min": 1900,
+        "max": 2100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Draft_Round": {
+        "type": "float",
+        "min": 0,
+        "max": 5,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Draft_Pick": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Draft_Team": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Experience": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Status": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Team_History": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Career_Highlights": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "scrape_ts": {
+        "type": "Datetime",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    }
+}

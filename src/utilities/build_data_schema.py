@@ -60,7 +60,10 @@ if __name__ == '__main__':
     espn_nba = pd.read_csv(ROOT_PATH + "/data/external/espn/NBA/Games.csv")
     espn_nba = list(espn_nba.columns)
     espn_rosters = ['Team', 'Player', 'Player_ID', 'scrape_ts']
-    path = ROOT_PATH + "/data/external/espn/espn_players.json"
+    espn_players = ['Player_ID', 'Player', 'Team', 'Number', 'Position', 'Height', 'Weight', 'Birth_Date',
+                    'Birth_Place', 'College', 'Draft_Year', 'Draft_Round', 'Draft_Pick', 'Draft_Team',
+                    'Experience', 'Status', 'Team_History', 'Career_Highlights', 'scrape_ts']
+    path = ROOT_PATH + "/data/external/espn/players.json"
     x = Build_Data_Schema()
     self = x
-    x.run(path, espn_rosters)
+    x.run(path, espn_players)
