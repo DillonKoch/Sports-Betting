@@ -1,0 +1,668 @@
+{
+    "Game_ID": {
+        "type": "float",
+        "min": 0,
+        "max": 1000000000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Season": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "\\d{4}-\\d{2}",
+        "allow_null": false
+    },
+    "Week": {
+        "type": "",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Date": {
+        "type": "Date",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Home": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Home_Wins": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Home_Losses": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away_Wins": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away_Losses": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Network": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Final_Status": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "H1H": {
+        "type": "",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "H2H": {
+        "type": "",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "H1Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "H2Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "H3Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "H4Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "HOT": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "A1H": {
+        "type": "",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "A2H": {
+        "type": "",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "A1Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "A2Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "A3Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "A4Q": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "AOT": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Final": {
+        "type": "float",
+        "min": 0,
+        "max": 250,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away_Final": {
+        "type": "float",
+        "min": 0,
+        "max": 250,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Home_FG_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_FG_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 200,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_FG_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_FG_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 200,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Field_Goal_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Field_Goal_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_3PT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_3PT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_3PT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_3PT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Three_Point_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Three_Point_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_FT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_FT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_FT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_FT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Free_Throw_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Free_Throw_Pct": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 150,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 150,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Offensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Offensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Defensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 150,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Defensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 150,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Assists": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Assists": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Steals": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Steals": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Blocks": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Blocks": {
+        "type": "float",
+        "min": 0,
+        "max": 50,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Total_Turnovers": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Total_Turnovers": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Points_Off_Turnovers": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Points_Off_Turnovers": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Fast_Break_Points": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Fast_Break_Points": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Points_In_Paint": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Points_In_Paint": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 75,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Technical_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 10,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Technical_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 10,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Flagrant_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 20,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Flagrant_Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 20,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Home_Largest_Lead": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Away_Largest_Lead": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    }
+}

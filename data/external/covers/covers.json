@@ -1,0 +1,66 @@
+{
+    "scraped_ts": {
+        "type": "Datetime",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Team": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player_ID": {
+        "type": "int",
+        "min": 0,
+        "max": 1000000,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Position": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Status": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Status_Date": {
+        "type": "Date",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Description": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    }
+}
