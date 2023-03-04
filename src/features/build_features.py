@@ -64,7 +64,7 @@ class Build_Features:
         avgs_cols = list(espn_games.columns)[:12] + [item + stat for item in ['Home_Home_', 'Home_Away_', 'Away_Home_', 'Away_Away_'] for stat in stats] + target_cols
         avgs_df = pd.DataFrame(columns=avgs_cols)
 
-        for game in tqdm(espn_games.to_dict('records')):
+        for game in tqdm(espn_games.to_dict('records')[-350:]):
             if datetime.datetime.strptime(game['Date'], "%Y-%m-%d") > datetime.datetime.now() + datetime.timedelta(days=30):
                 continue
             new_row = pd.DataFrame([[None] * len(avgs_df.columns)], columns=avgs_df.columns)
@@ -226,6 +226,7 @@ class Build_Features:
         val = val.reset_index(drop=True)
         test = test.reset_index(drop=True)
         future = future.reset_index(drop=True)
+        future_date_home_away, future = future.loc[:, ['Date', 'Home', 'Away']], future.drop(['Date', 'Home', 'Away'], axis=1)
 
         odds_cols = ['Home_Line', 'Home_Line_ML', 'Away_Line', 'Away_Line_ML',
                      'Over', 'Over_ML', 'Under', 'Under_ML', 'Home_ML', 'Away_ML']
@@ -253,6 +254,8 @@ class Build_Features:
         val_final = pd.concat([pd.DataFrame(X_val_scaled, columns=X_val.columns), y_val, odds_val], axis=1)
         test_final = pd.concat([pd.DataFrame(X_test_scaled, columns=X_test.columns), y_test, odds_test], axis=1)
         future_final = pd.concat([pd.DataFrame(X_future_scaled, columns=X_future.columns), y_future, odds_future], axis=1)
+
+        future_final = pd.concat([future_date_home_away, future_final], axis=1)
 
         return train_final, val_final, test_final, future_final, scaler
 
@@ -291,11 +294,6 @@ class Build_Features:
         # df = self.add_player_stats(df, n_games)
         df = self.add_betting_odds(df)
 
-        # * removing cols
-        remove_cols = ['Game_ID', 'Season', 'Week', 'Home', 'Away', 'Final_Status']
-        if self.league != "NCAAB":
-            remove_cols += [col for col in list(df.columns) if '1H' in col or '2H' in col]
-        df = df.drop(columns=remove_cols)
         df = df.dropna(thresh=df.shape[1] - 50)  # * removing rows with 50+ missing vals (no stats or 2007 start games)
         for col in ['Home_Line', 'Over']:
             df = df.loc[df[col].notnull()]
@@ -304,7 +302,14 @@ class Build_Features:
         df['Date'] = pd.to_datetime(df["Date"])
         future = df[df['Date'] >= datetime.datetime.today() - datetime.timedelta(days=1)]
         df = df[df['Date'] < datetime.datetime.today() - datetime.timedelta(days=1)]
-        future = future.drop('Date', axis=1)
+        # future = future.drop('Date', axis=1)
+
+        # * removing cols
+        remove_cols = ['Game_ID', 'Season', 'Week', 'Final_Status']
+        if self.league != "NCAAB":
+            remove_cols += [col for col in list(df.columns) if '1H' in col or '2H' in col]
+        df = df.drop(columns=remove_cols + ['Home', 'Away'])
+        future = future.drop(columns=remove_cols)
 
         df.to_csv("temp.csv", index=False)
         future.to_csv("future.csv", index=False)
@@ -321,11 +326,11 @@ class Build_Features:
         # train, val, test = self.dimensionality_reduction(train, val, test)
 
         # * saving
-        train.to_csv(ROOT_PATH + f"/data/processed/{n_games}games_train.csv", index=False)
-        val.to_csv(ROOT_PATH + f"/data/processed/{n_games}games_val.csv", index=False)
-        test.to_csv(ROOT_PATH + f"/data/processed/{n_games}games_test.csv", index=False)
-        future.to_csv(ROOT_PATH + f"/data/processed/{n_games}games_future.csv", index=False)
-        with open(ROOT_PATH + f"/data/processed/{n_games}games_scaler.pickle", "wb") as f:
+        train.to_csv(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_train.csv", index=False)
+        val.to_csv(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_val.csv", index=False)
+        test.to_csv(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_test.csv", index=False)
+        future.to_csv(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_future.csv", index=False)
+        with open(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_scaler.pickle", "wb") as f:
             pickle.dump(scaler, f)
 
         # TODO balance classes while right about to train model (won't here bc multiple targets)

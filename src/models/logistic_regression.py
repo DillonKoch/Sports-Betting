@@ -28,11 +28,14 @@ from src.models.model_parent import Model_Parent
 
 
 class LogisticRegressionModel(Model_Parent):
-    def __init__(self, bet_type, hyperparameters):
-        super().__init__(bet_type)
+    def __init__(self, league, bet_type, hyperparameters):
+        super().__init__(league, bet_type)
         self.hyperparameters = hyperparameters
         self.n_games = hyperparameters[0]  # TODO unpack more if more hypers added
         self.model = LogisticRegression()
+
+    def __str__(self):
+        return f"Logistic Regression, n_games={self.n_games}"
 
     def train(self):  # Run
         train, val, test = self.load_data()
@@ -43,16 +46,15 @@ class LogisticRegressionModel(Model_Parent):
         val_preds = self.model.predict(val_X)
         val_acc = accuracy_score(val_preds, val_y)
         print(val_acc)
+        self.val_acc = val_acc
         return val_acc
-
-    def predict(self, X):  # Run
-        return self.model.predict(X)
 
 
 if __name__ == '__main__':
+    league = "NBA"
     bet_type = "Spread"
     n_games = 10
     hyperparameters = [n_games]
-    x = LogisticRegressionModel(bet_type, hyperparameters)
+    x = LogisticRegressionModel(league, bet_type, hyperparameters)
     self = x
     x.train()

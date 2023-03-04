@@ -1,0 +1,110 @@
+{
+    "Date": {
+        "type": "Date",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Home": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Away": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Bet_Type": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Bet_Value": {
+        "type": "float",
+        "min": -100,
+        "max": 300,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Bet_ML": {
+        "type": "int",
+        "min": -1000000,
+        "max": 500000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Prediction": {
+        "type": "float",
+        "min": 0,
+        "max": 1,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Outcome": {
+        "type": "float",
+        "min": 0,
+        "max": 1,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Model_Info": {
+        "type": "string",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Accuracy": {
+        "type": "float",
+        "min": 0,
+        "max": 1,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Train_ts": {
+        "type": "Datetime",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Pred_ts": {
+        "type": "Datetime",
+        "min": 0,
+        "max": 0,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    }
+}

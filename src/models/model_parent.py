@@ -12,6 +12,7 @@
 # parent class with common methods for models
 # ==============================================================================
 
+import datetime
 import sys
 from os.path import abspath, dirname
 
@@ -24,11 +25,16 @@ if ROOT_PATH not in sys.path:
 
 
 class Model_Parent:
-    def __init__(self, bet_type):
+    def __init__(self, league, bet_type):
+        self.league = league
         self.bet_type = bet_type
         self.non_feature_cols = set(['Home_Won', 'Home_Diff', 'Total', 'raw_Home_Line', 'raw_Home_Line_ML',
                                      'raw_Away_Line', 'raw_Away_Line_ML', 'raw_Over', 'raw_Over_ML', 'raw_Under',
                                      'raw_Under_ML', 'raw_Home_ML', 'raw_Away_ML', 'Home_Covered'])
+
+        # * information about the model
+        self.train_ts = datetime.datetime.now()
+        self.val_acc = None
 
     def _balance_classes(self, df):  # Specific Helper load_data
         ros = RandomOverSampler(random_state=18)
@@ -37,9 +43,9 @@ class Model_Parent:
         return df_resampled
 
     def load_data(self):  # Top Level
-        train_path = ROOT_PATH + f"/data/processed/{self.n_games}games_train.csv"
-        val_path = ROOT_PATH + f"/data/processed/{self.n_games}games_val.csv"
-        test_path = ROOT_PATH + f"/data/processed/{self.n_games}games_test.csv"
+        train_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_train.csv"
+        val_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_val.csv"
+        test_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_test.csv"
         train = pd.read_csv(train_path)
         val = pd.read_csv(val_path)
         test = pd.read_csv(test_path)
@@ -56,8 +62,8 @@ class Model_Parent:
         X = df.loc[:, [col for col in list(df.columns) if col not in self.non_feature_cols]]
         return X, y
 
-    def run(self):  # Run
-        pass
+    def predict(self, X):  # Run
+        return self.model.predict(X)
 
 
 if __name__ == '__main__':

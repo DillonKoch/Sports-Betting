@@ -26,11 +26,14 @@ from src.models.model_parent import Model_Parent
 
 
 class RandomForestModel(Model_Parent):
-    def __init__(self, bet_type, hyperparameters):
-        super().__init__(bet_type)
+    def __init__(self, league, bet_type, hyperparameters):
+        super().__init__(league, bet_type)
         self.hyperparameters = hyperparameters
         self.n_games, self.n_estimators, self.max_features, self.max_depth = hyperparameters
         self.model = RandomForestClassifier(n_estimators=self.n_estimators, max_features=self.max_features, max_depth=self.max_depth)
+
+    def __str__(self):
+        return f"Random Forest, n_games={self.n_games}, n_estimators={self.n_estimators}, max_features={self.max_features}, max_depth={self.max_depth}"
 
     def train(self):  # Run
         train, val, test = self.load_data()
@@ -42,13 +45,15 @@ class RandomForestModel(Model_Parent):
         val_preds = self.model.predict(val_X)
         val_acc = accuracy_score(val_preds, val_y)
         print(val_acc)
+        self.val_acc = val_acc
         return val_acc
 
 
 if __name__ == '__main__':
+    league = "NBA"
     bet_type = "Spread"
     n_games = 10
     hyperparameters = [n_games]
-    x = RandomForestModel(bet_type, hyperparameters)
+    x = RandomForestModel(league, bet_type, hyperparameters)
     self = x
     x.train()
