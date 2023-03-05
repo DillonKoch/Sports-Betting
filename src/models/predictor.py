@@ -14,6 +14,7 @@
 # ==============================================================================
 
 
+import datetime
 import os
 import pickle
 import sys
@@ -30,12 +31,13 @@ class Predictor:
     def __init__(self, league, bet_type):
         self.league = league
         self.bet_type = bet_type
+        self.current_ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.pred_df_path = ROOT_PATH + f'/data/predictions/{self.league}_predictions.csv'
 
     def load_pred_df(self):  # Top Level
-        path = ROOT_PATH + f'/data/predictions/{self.league}_predictions.csv'
         cols = ['Date', 'Home', 'Away', 'Bet_Type', 'Bet_Value', 'Bet_ML', 'Prediction', 'Outcome',
                 'Model_Info', 'Accuracy', 'Train_ts', 'Pred_ts']
-        df = pd.DataFrame(columns=cols) if not os.path.exists(path) else pd.read_csv(path)
+        df = pd.DataFrame(columns=cols) if not os.path.exists(self.pred_df_path) else pd.read_csv(self.pred_df_path)
         return df
 
     def load_model(self):  # Top Level
@@ -50,13 +52,25 @@ class Predictor:
         future = pd.read_csv(path)
         return future
 
+    def save_preds(self, pred_df, future, future_info, preds, model):  # Top Level
+        for i in range(len(future)):
+            new_row = [future_info.loc[i, 'Date'], future_info.loc[i, 'Home'], future_info.loc[i, 'Away'],
+                       self.bet_type, future.loc[i, 'raw_Home_Line'], future.loc[i, 'raw_Home_Line_ML'], preds[i],
+                       None, model.__str__(), model.val_acc, model.train_ts, self.current_ts]
+            pred_df.loc[len(pred_df)] = new_row
+
+        pred_df.to_csv(self.pred_df_path, index=False)
+
     def run(self):  # Run
         pred_df = self.load_pred_df()
         # load best model
         model = self.load_model()
         # load future data
         future = self.load_future_data(model)
-        print('ere')
+        future_drop_cols = ['Date', 'Home', 'Away', 'Home_Won', 'Home_Diff', 'Total'] + [col for col in list(future.columns) if col.startswith('raw_')]
+        future_info, future_X = future.loc[:, ['Date', 'Home', 'Away']], future.drop(future_drop_cols, axis=1)
+        preds = model.predict(future_X)
+        self.save_preds(pred_df, future, future_info, preds, model)
 
 
 if __name__ == '__main__':

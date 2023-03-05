@@ -132,16 +132,16 @@ class Build_Features:
                 df.at[i, 'Home_ML'] = list(sbro_row['Home_ML'])[0]
                 df.at[i, 'Away_ML'] = list(sbro_row['Away_ML'])[0]
             elif len(esb_row) > 0:
-                df.at[i, 'Home_Line'] = list(esb_row['Home_Line'])[0]
-                df.at[i, 'Away_Line'] = list(esb_row['Away_Line'])[0]
-                df.at[i, 'Home_Line_ML'] = list(esb_row['Home_Line_ML'])[0]
-                df.at[i, 'Away_Line_ML'] = list(esb_row['Away_Line_ML'])[0]
-                df.at[i, 'Over'] = list(esb_row['Over'])[0]
-                df.at[i, 'Over_ML'] = list(esb_row['Over_ML'])[0]
-                df.at[i, 'Under'] = list(esb_row['Under'])[0]
-                df.at[i, 'Under_ML'] = list(esb_row['Under_ML'])[0]
-                df.at[i, 'Home_ML'] = list(esb_row['Home_ML'])[0]
-                df.at[i, 'Away_ML'] = list(esb_row['Away_ML'])[0]
+                df.at[i, 'Home_Line'] = list(esb_row['Home_Line'])[-1]  # * using -1 because we could have multiple rows for a single game
+                df.at[i, 'Away_Line'] = list(esb_row['Away_Line'])[-1]
+                df.at[i, 'Home_Line_ML'] = list(esb_row['Home_Line_ML'])[-1]
+                df.at[i, 'Away_Line_ML'] = list(esb_row['Away_Line_ML'])[-1]
+                df.at[i, 'Over'] = list(esb_row['Over'])[-1]
+                df.at[i, 'Over_ML'] = list(esb_row['Over_ML'])[-1]
+                df.at[i, 'Under'] = list(esb_row['Under'])[-1]
+                df.at[i, 'Under_ML'] = list(esb_row['Under_ML'])[-1]
+                df.at[i, 'Home_ML'] = list(esb_row['Home_ML'])[-1]
+                df.at[i, 'Away_ML'] = list(esb_row['Away_ML'])[-1]
 
         return df
 
