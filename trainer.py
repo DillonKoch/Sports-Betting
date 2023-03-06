@@ -17,6 +17,8 @@ import pickle
 import sys
 import warnings
 from os.path import abspath, dirname
+import numpy as np
+from operator import itemgetter
 
 warnings.filterwarnings('ignore')
 
@@ -44,22 +46,53 @@ class Trainer:
 
         self.param_sets = [self.lr_hyperparams, self.rf_hyperparams]
 
-    def run(self):  # Run
-        best_model = None
-        best_acc = 0
+    def save_model(self, model):  # Top Level
+        with open(ROOT_PATH + f"/models/{self.league}/{self.bet_type}_best.pickle", 'wb') as f:
+            pickle.dump(model, f)
 
-        for i, (algo, param_set) in enumerate(zip(self.algos, self.param_sets)):
+    def grid_search(self, param_sets=None):  # Run
+        """
+        searching through all hyperparameters and saving the best model
+        """
+        param_sets = self.param_sets[i] if param_sets is None else param_sets
+        # best_model = None
+        # best_acc = 0
+        model_accs = []
+
+        for i, (algo, param_set) in enumerate(zip(self.algos, param_sets)):
             for j, params in enumerate(param_set):
                 print(f"Algorithm {i}/{len(self.algos)}, Hyperparameters {j}/{len(param_set)}")
                 model = algo(self.league, self.bet_type, params)
                 acc = model.train()
-                if acc > best_acc:
-                    best_model = model
-                    best_acc = acc
+                model_accs.append((model, acc))
+                # if acc > best_acc:
+                #     best_model = model
+                #     best_acc = acc
+                print(f"Best accuracy: {max([item[1] for item in model_accs])}")
 
-                print(f"Best accuracy: {best_acc}")
-                with open(ROOT_PATH + f"/models/{self.league}/{self.bet_type}_best.pickle", 'wb') as f:
-                    pickle.dump(best_model, f)
+        model_accs.sort(key=itemgetter(1))
+        best_model = model_accs[-1][0]
+        self.save_model(best_model)
+        return model_accs
+
+    def random_search(self, n):  # Run
+        """
+        searching through n random sets of parameters, and saving the best model
+        """
+        param_sets = np.random.shuffle(self.param_sets)[:n]
+        self.grid_search(param_sets)
+
+    def neighbors(self, param_set):
+        pass
+
+    def coarse_to_fine_search(self, n, m):  # Run
+        """
+        searching through n random sets of hyperparameters, then neighboring sets for the top m
+        """
+        param_sets = np.random.shuffle(self.param_sets)[:n]
+        best_m = self.grid_search(param_sets)
+        neighbors = []
+        self.grid_search(neighbors)
 
 
 if __name__ == '__main__':

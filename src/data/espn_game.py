@@ -366,22 +366,37 @@ class ESPN_Game:
             print('error scraping stats')
             return game
 
+    def scrape_odds(self, game, summary_sp):  # Top Level
+        # * over/under
+        over_under = None
+        over_under_sp = summary_sp.find_all('div', attrs={'class': 'n8 GameInfo__BettingItem flex-expand ou'})
+        if over_under_sp:
+            over_under = float(over_under_sp[0].get_text().split(' ')[1])
+
+        # * spread
+        spread = None
+        spread_sp = summary_sp.find_all('div', attrs={'class': 'n8 GameInfo__BettingItem flex-expand line'})
+        if spread_sp:
+            spread = spread_sp[0].get_text().replace("Line: ", "")
+
+        game[-2:] = [spread, over_under]
+        return game
+
     def run(self):  # Run
         df = pd.read_csv(self.df_path)
         df.drop_duplicates(subset='Game_ID', keep='first', inplace=True)
         df.sort_values(by='Date', inplace=True)
-        df_unscraped = df.loc[df['H1Q'].isnull()]
+        df_unscraped = df.loc[df['H1Q'].isnull()]  # TODO fix for NCAAB
         unscraped_games = df_unscraped.values.tolist()
         df_scraped = df.loc[df['H1Q'].notnull()]
 
         schema_path = ROOT_PATH + f"/data/external/espn/{self.league}/espn_{self.league.lower()}_games.json"
         self.test_data_schema.run(schema_path, df_scraped)
 
-        # TODO after schedule scraping, scrape games with no data!
-        # TODO may have to edit the schema testing to include only scraped/played games
-
         for i, game in enumerate(unscraped_games):
             print(f"{i}/{len(unscraped_games)}")
+            if isinstance(game[3], str) and datetime.datetime.strptime(game[3], "%Y-%m-%d") > datetime.datetime.today() + datetime.timedelta(days=1):
+                continue
 
             try:
                 game_id = game[0]
@@ -392,6 +407,7 @@ class ESPN_Game:
                 game = self.scrape_teams(game, summary_sp)
                 game = self.scrape_team_records(game, summary_sp)
                 game = self.scrape_network(game, summary_sp)
+                game = self.scrape_odds(game, summary_sp)
 
                 if datetime.datetime.strptime(game[3], "%Y-%m-%d") < datetime.datetime.today():  # TODO scrape games coming soon to update records/etc
                     # * game has been played, scrape everything
@@ -404,7 +420,7 @@ class ESPN_Game:
                     game = self.scrape_final_scores(game, stats_sp)
                     game = self.scrape_stats(game, stats_sp)
                     game[11] = "Final" if game[18] is None else "Final/OT"
-                    game[12:] = [float(item) if item else item for item in game[12:]]
+                    game[12:-2] = [float(item) if item else item for item in game[12:-2]]
                 print(f"{game[5]} at {game[4]}, {game[3]}")
 
                 self.test_data_schema.run(schema_path, pd.DataFrame([game], columns=df.columns))

@@ -13,7 +13,9 @@
 # ==============================================================================
 
 
+import concurrent.futures
 import datetime
+import os
 import pickle
 import sys
 from os.path import abspath, dirname
@@ -27,6 +29,12 @@ from tqdm import tqdm
 ROOT_PATH = dirname(dirname(dirname(abspath(__file__))))
 if ROOT_PATH not in sys.path:
     sys.path.append(ROOT_PATH)
+
+
+def multithread(func, func_args):  # Multithreading
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        result = list(tqdm(executor.map(func, func_args), total=len(func_args)))
+    return result
 
 
 class Build_Features:
@@ -46,7 +54,13 @@ class Build_Features:
         # go through all games in espn games df, storing values for each stat for each team
         # at each game, add the new value and pop the oldest (if reached n_games)
         # compute averages, add to new df
+        checkpoint_path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_espn_avgs_checkpoint.csv"
+        checkpoint_df = None
+        if os.path.exists(checkpoint_path):
+            checkpoint_df = pd.read_csv(checkpoint_path)
+
         espn_games = pd.read_csv(ROOT_PATH + f"/data/external/espn/{self.league}/Games.csv")
+        espn_games = espn_games.drop(['Line', 'Over_Under'], axis=1)
         espn_games = espn_games.loc[(espn_games['Date'].notnull()) & (espn_games['Home'].notnull()) & (espn_games['Away'].notnull())]
         espn_games['HOT'] = espn_games['HOT'].fillna(0)
         espn_games['AOT'] = espn_games['AOT'].fillna(0)
@@ -63,8 +77,11 @@ class Build_Features:
         target_cols = ['Home_Won', 'Home_Diff', 'Total']
         avgs_cols = list(espn_games.columns)[:12] + [item + stat for item in ['Home_Home_', 'Home_Away_', 'Away_Home_', 'Away_Away_'] for stat in stats] + target_cols
         avgs_df = pd.DataFrame(columns=avgs_cols)
+        if checkpoint_df is not None:
+            avgs_df = checkpoint_df
+            espn_games = espn_games.iloc[len(avgs_df):, :]
 
-        for game in tqdm(espn_games.to_dict('records')[-350:]):
+        for game in tqdm(espn_games.to_dict('records')):
             if datetime.datetime.strptime(game['Date'], "%Y-%m-%d") > datetime.datetime.now() + datetime.timedelta(days=30):
                 continue
             new_row = pd.DataFrame([[None] * len(avgs_df.columns)], columns=avgs_df.columns)
@@ -95,6 +112,7 @@ class Build_Features:
 
             avgs_df = pd.concat([avgs_df, new_row], ignore_index=True)
 
+        avgs_df.to_csv(checkpoint_path, index=False)
         return avgs_df
 
     def add_player_stats(self, df, n_games):  # Top Level
@@ -302,7 +320,6 @@ class Build_Features:
         df['Date'] = pd.to_datetime(df["Date"])
         future = df[df['Date'] >= datetime.datetime.today() - datetime.timedelta(days=1)]
         df = df[df['Date'] < datetime.datetime.today() - datetime.timedelta(days=1)]
-        # future = future.drop('Date', axis=1)
 
         # * removing cols
         remove_cols = ['Game_ID', 'Season', 'Week', 'Final_Status']
@@ -340,5 +357,7 @@ if __name__ == '__main__':
     for league in ['NBA']:
         x = Build_Features(league)
         self = x
-        for n in [3, 5, 10, 15, 25]:
-            x.run(n_games=n)
+        # for n in [3, 5, 10, 15, 25]:
+        #     x.run(n_games=n)
+        multithread(x.run, [3, 5, 10, 15, 25])
+        # x.run(n_games=3)

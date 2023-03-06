@@ -664,5 +664,23 @@
         "whitelist": "",
         "regex": "",
         "allow_null": true
+    },
+    "Line": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Over_Under": {
+        "type": "float",
+        "min": 0,
+        "max": 300,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
     }
 }

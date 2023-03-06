@@ -1,35 +1,34 @@
 # ==============================================================================
-# File: neural_net.py
+# File: dataset.py
 # Project: allison
-# File Created: Tuesday, 28th February 2023 7:11:58 am
+# File Created: Saturday, 4th March 2023 7:15:36 pm
 # Author: Dillon Koch
 # -----
-# Last Modified: Tuesday, 28th February 2023 7:11:58 am
+# Last Modified: Saturday, 4th March 2023 7:15:37 pm
 # Modified By: Dillon Koch
 # -----
 #
 # -----
-# neural net models
+# dataset class for pytorch models
 # ==============================================================================
-
 
 from os.path import abspath, dirname
 import sys
+import torch
+from torch.utils.data import Dataset
 
 ROOT_PATH = dirname(dirname(abspath(__file__)))
 if ROOT_PATH not in sys.path:
     sys.path.append(ROOT_PATH)
 
 
-class NeuralNet1:
-    def __init__(self):
+class SB_Dataset(Dataset):
+    def __init__(self, league, bet_type):
+        self.league = league
+        self.bet_type = bet_type
+
+    def __len__(self):  # Run
         pass
 
-    def run(self):  # Run
+    def __getitem__(self, idx):  # Run
         pass
-
-
-if __name__ == '__main__':
-    x = NeuralNet1()
-    self = x
-    x.run()
