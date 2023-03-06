@@ -53,9 +53,10 @@ class Predictor:
         return future
 
     def save_preds(self, pred_df, future, future_info, preds, model):  # Top Level
+        bet_type_col = 'raw_Home_Line' if self.bet_type == "Spread" else 'raw_Over'
         for i in range(len(future)):
             new_row = [future_info.loc[i, 'Date'], future_info.loc[i, 'Home'], future_info.loc[i, 'Away'],
-                       self.bet_type, future.loc[i, 'raw_Home_Line'], future.loc[i, 'raw_Home_Line_ML'], preds[i],
+                       self.bet_type, future.loc[i, bet_type_col], future.loc[i, 'raw_Home_Line_ML'], preds[i],
                        None, model.__str__(), model.val_acc, model.train_ts, self.current_ts]
             pred_df.loc[len(pred_df)] = new_row
 
@@ -76,7 +77,7 @@ class Predictor:
 
 if __name__ == '__main__':
     league = "NBA"
-    bet_type = "Spread"
+    bet_type = "Total"
     x = Predictor(league, bet_type)
     self = x
     x.run()

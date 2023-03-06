@@ -30,15 +30,15 @@ class Model_Parent:
         self.bet_type = bet_type
         self.non_feature_cols = set(['Home_Won', 'Home_Diff', 'Total', 'raw_Home_Line', 'raw_Home_Line_ML',
                                      'raw_Away_Line', 'raw_Away_Line_ML', 'raw_Over', 'raw_Over_ML', 'raw_Under',
-                                     'raw_Under_ML', 'raw_Home_ML', 'raw_Away_ML', 'Home_Covered'])
+                                     'raw_Under_ML', 'raw_Home_ML', 'raw_Away_ML', 'Home_Covered', 'Over_Hit'])
 
         # * information about the model
         self.train_ts = datetime.datetime.now()
         self.val_acc = None
 
-    def _balance_classes(self, df):  # Specific Helper load_data
+    def _balance_classes(self, df, col):  # Specific Helper load_data
         ros = RandomOverSampler(random_state=18)
-        df_resampled, y_resampled = ros.fit_resample(df, df['Home_Covered'])
+        df_resampled, y_resampled = ros.fit_resample(df, df[col])
         df_resampled = df_resampled.sample(frac=1)
         return df_resampled
 
@@ -55,9 +55,13 @@ class Model_Parent:
         if self.bet_type == "Spread":
             df['Home_Covered'] = ((df['Home_Diff'] + df['raw_Home_Line']) > 0).astype(int)
             if balance_classes:
-                df = self._balance_classes(df)
+                df = self._balance_classes(df, 'Home_Covered')
             y = df['Home_Covered']
-        # TODO create y for more bet types
+        elif self.bet_type == "Total":
+            df['Over_Hit'] = (df['Total'] > df['raw_Over']).astype(int)
+            if balance_classes:
+                df = self._balance_classes(df, 'Over_Hit')
+            y = df['Over_Hit']
 
         X = df.loc[:, [col for col in list(df.columns) if col not in self.non_feature_cols]]
         return X, y

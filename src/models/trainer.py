@@ -38,17 +38,22 @@ class Trainer:
         self.league = league
         self.bet_type = bet_type
 
-        self.lr_param_sets = [[n_games, ] for n_games in [3, 5, 10, 15, 25]]
-        self.rf_param_sets = [[n_games, n_estimators, max_features, max_depth]
+        self.lr_param_sets = [[n_games, feature_selection]
+                              for n_games in [3, 5, 10, 15, 25]
+                              for feature_selection in [None, 25, 100, 200]]
+
+        self.rf_param_sets = [[n_games, n_estimators, max_features, max_depth, feature_selection]
                               for n_games in [3, 5, 10, 15, 25]
                               for n_estimators in [10, 50, 100]
                               for max_features in ['sqrt', 'log2', 0.5]
-                              for max_depth in [None, 5, 10, 20]]
-        self.xgb_param_sets = [[n_games, lr, max_depth, n_estimators]
+                              for max_depth in [None, 5, 10, 20]
+                              for feature_selection in [None, 25, 100, 200]]
+        self.xgb_param_sets = [[n_games, lr, max_depth, n_estimators, feature_selection]
                                for n_games in [3, 5, 10, 15, 25]
                                for lr in [0.01, 0.05, 0.1, 0.15, 0.2]
                                for max_depth in [3, 5, 7, 10]
-                               for n_estimators in [100, 250, 500, 750, 1000]]
+                               for n_estimators in [100, 250, 500, 750, 1000]
+                               for feature_selection in [True, False]]
         self.svm_param_sets = [[n_games, c, kernel, gamma, degree]
                                for n_games in [3, 5, 10, 15, 25]
                                for c in [0.01, 0, 1, 1, 10, 100]
@@ -131,19 +136,34 @@ class Trainer:
 
         self.grid_search(algo, neighbors, save_best=save_best)
 
-    def run_all_algos(self, method, n=None, m=None):  # Run
+    def run_all_algos(self, method, algos=None, n=None, m=None):  # Run
         """
         performs one of grid/random/ctf search across all algorithms
         """
-        pass
+        algos = list(self.algo_dict.keys()) if algos is None else algos
+        if method == "grid":
+            model_acc_params = []
+            for algo in algos:
+                model_acc_params += self.grid_search(algo, save_best=False)
+            model_acc_params.sort(key=itemgetter(1))
+            self.save_model(model_acc_params[-1][0])
+
+        elif method == "random":
+            model_acc_params = []
+            for algo in algos:
+                model_acc_params += self.random_search(algo, 20, save_best=False)
+            model_acc_params.sort(key=itemgetter(1))
+            self.save_model(model_acc_params[-1][0])
 
 
 if __name__ == '__main__':
     league = "NBA"
-    bet_type = "Spread"
-    algo = "xgboost"
+    bet_type = "Total"
+    algo = "random forest"
+    algos = ['logistic regression', 'random forest', 'xgboost']
     x = Trainer(league, bet_type)
     self = x
     # x.grid_search(algo)
-    # x.random_search(algo, 10)
-    x.coarse_to_fine_search(algo, 10, 1)
+    x.random_search(algo, 20)
+    # x.coarse_to_fine_search(algo, 10, 1)
+    # x.run_all_algos("random", algos)

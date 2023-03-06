@@ -17,6 +17,7 @@ from os.path import abspath, dirname
 
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.metrics import accuracy_score
 
 ROOT_PATH = dirname(dirname(abspath(__file__)))
@@ -29,19 +30,24 @@ from src.models.model_parent import Model_Parent
 class RandomForestModel(Model_Parent):
     def __init__(self, league, bet_type, hyperparameters):
         super().__init__(league, bet_type)
-        self.n_games, self.n_estimators, self.max_features, self.max_depth = hyperparameters
+        self.n_games, self.n_estimators, self.max_features, self.max_depth, self.feature_selection = hyperparameters
         print("Random Forest")
         print(self.__str__())
         self.model = RandomForestClassifier(n_estimators=self.n_estimators, max_features=self.max_features, max_depth=self.max_depth)
 
     def __str__(self):
-        return f"Random Forest, n_games={self.n_games}, n_estimators={self.n_estimators}, max_features={self.max_features}, max_depth={self.max_depth}"
+        return f"Random Forest, n_games={self.n_games}, n_estimators={self.n_estimators}, max_features={self.max_features}, max_depth={self.max_depth}, feature_selection={self.feature_selection}"
 
     def train(self):  # Run
         train, val, test = self.load_data()
         train_X, train_y = self.separate_X_y(train, balance_classes=True)
-
         val_X, val_y = self.separate_X_y(val)
+
+        if self.feature_selection:
+            self.selector = SelectKBest(mutual_info_classif, k=self.feature_selection)
+            train_X = self.selector.fit_transform(train_X, train_y)
+            val_X = self.selector.transform(val_X)
+
         self.model.fit(train_X, train_y)
 
         val_preds = self.model.predict(val_X)
