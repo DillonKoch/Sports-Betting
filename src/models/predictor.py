@@ -59,6 +59,7 @@ class Predictor:
                        None, model.__str__(), model.val_acc, model.train_ts, self.current_ts]
             pred_df.loc[len(pred_df)] = new_row
 
+        pred_df = pred_df.drop_duplicates(subset=['Home', 'Away', 'Date', 'Bet_Type'], keep='last')
         pred_df.to_csv(self.pred_df_path, index=False)
 
     def run(self):  # Run

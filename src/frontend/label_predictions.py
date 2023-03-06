@@ -12,6 +12,7 @@
 # labeling predictions made in /data/predictions/ using game outcomes
 # ==============================================================================
 
+import datetime
 import sys
 from os.path import abspath, dirname
 
@@ -26,27 +27,29 @@ if ROOT_PATH not in sys.path:
 class Label_Predictions:
     def __init__(self, league):
         self.league = league
+        self.pred_df_path = ROOT_PATH + f'/data/predictions/{self.league}_predictions.csv'
 
     def espn_scores(self, espn_df, date, home, away):  # Top Level
         home_score = None
         away_score = None
 
         row = espn_df.loc[(espn_df['Date'] == date) & (((espn_df['Home'] == home) & (espn_df['Away'] == away)) | ((espn_df['Home'] == away) & (espn_df['Away'] == home)))]
-        if len(row):
-            home_score = int(row['Home_Final'])
-            away_score = int(row['Away_Final'])
+        if len(row) and datetime.datetime.today() - datetime.timedelta(days=1) > datetime.datetime.strptime(list(row['Date'])[0], '%Y-%m-%d'):
+            home_score = int(list(row['Home_Final'])[0])
+            away_score = int(list(row['Away_Final'])[0])
 
-            if row['Home'] == away:
+            if list(row['Home'])[0] == away:
                 home_score, away_score = away_score, home_score
 
         return home_score, away_score
 
     def run(self):  # Run
-        pred_df = pd.read_csv(ROOT_PATH + f'/data/predictions/{self.league}_predictions.csv')
+        pred_df = pd.read_csv(self.pred_df_path)
         espn_df = pd.read_csv(ROOT_PATH + f'/data/external/espn/{self.league}/Games.csv')
 
         for i in range(len(pred_df)):
             row = pred_df.iloc[i, :]
+            outcome = None
 
             if np.isnan(row['Outcome']):
                 date = row['Date']
@@ -54,7 +57,32 @@ class Label_Predictions:
                 away = row['Away']
 
                 home_score, away_score = self.espn_scores(espn_df, date, home, away)
-                print('here')
+                if (not home_score) or (not away_score):
+                    continue
+
+                if row['Bet_Type'] == "Spread":
+                    home_bet_total = home_score + row['Bet_Value']
+                    if home_bet_total > away_score:
+                        outcome = 1
+                    elif home_bet_total == away_score:
+                        outcome = 0.5
+                    else:
+                        outcome = 0
+
+                elif row['Bet_Type'] == 'Total':
+                    real_total = home_score + away_score
+                    betting_total = row['Bet_Value']
+                    if real_total > betting_total:
+                        outcome = 1
+                    elif real_total == betting_total:
+                        outcome = 0.5
+                    else:
+                        outcome = 0
+
+                row['Outcome'] = outcome
+                pred_df.iloc[i, :] = row
+
+        pred_df.to_csv(self.pred_df_path, index=False)
 
 
 if __name__ == '__main__':

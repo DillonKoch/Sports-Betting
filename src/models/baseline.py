@@ -1,35 +1,35 @@
 # ==============================================================================
-# File: svm.py
+# File: baseline.py
 # Project: allison
-# File Created: Tuesday, 28th February 2023 7:11:36 am
+# File Created: Monday, 6th March 2023 12:25:40 pm
 # Author: Dillon Koch
 # -----
-# Last Modified: Tuesday, 28th February 2023 7:11:37 am
+# Last Modified: Monday, 6th March 2023 12:25:41 pm
 # Modified By: Dillon Koch
 # -----
 #
 # -----
-# svm model
+# baseline model for making predictions (predicts at random)
 # ==============================================================================
 
-
-from os.path import abspath, dirname
+import random
 import sys
+from os.path import abspath, dirname
 
 ROOT_PATH = dirname(dirname(abspath(__file__)))
 if ROOT_PATH not in sys.path:
     sys.path.append(ROOT_PATH)
 
 
-class SVM:
+class Baseline:
     def __init__(self):
         pass
 
-    def run(self):  # Run
-        pass
+    def predict(self, X):  # Run
+        return 1 if random.random() > 0.5 else 0
 
 
 if __name__ == '__main__':
-    x = SVM()
+    x = Baseline()
     self = x
     x.run()

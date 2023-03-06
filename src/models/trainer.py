@@ -26,6 +26,9 @@ if ROOT_PATH not in sys.path:
     sys.path.append(ROOT_PATH)
 
 from src.models.logistic_regression import LogisticRegressionModel
+from src.models.random_forest import RandomForestModel
+from src.models.svm import SVMModel
+from src.models.xgboost_model import XGBoostModel
 
 warnings.filterwarnings('ignore')
 
@@ -36,8 +39,31 @@ class Trainer:
         self.bet_type = bet_type
 
         self.lr_param_sets = [[n_games, ] for n_games in [3, 5, 10, 15, 25]]
-        self.param_sets = {"logistic regression": self.lr_param_sets}
-        self.algo_dict = {"logistic regression": LogisticRegressionModel}
+        self.rf_param_sets = [[n_games, n_estimators, max_features, max_depth]
+                              for n_games in [3, 5, 10, 15, 25]
+                              for n_estimators in [10, 50, 100]
+                              for max_features in ['sqrt', 'log2', 0.5]
+                              for max_depth in [None, 5, 10, 20]]
+        self.xgb_param_sets = [[n_games, lr, max_depth, n_estimators]
+                               for n_games in [3, 5, 10, 15, 25]
+                               for lr in [0.01, 0.05, 0.1, 0.15, 0.2]
+                               for max_depth in [3, 5, 7, 10]
+                               for n_estimators in [100, 250, 500, 750, 1000]]
+        self.svm_param_sets = [[n_games, c, kernel, gamma, degree]
+                               for n_games in [3, 5, 10, 15, 25]
+                               for c in [0.01, 0, 1, 1, 10, 100]
+                               for kernel in ['linear', 'poly', 'rbf', 'sigmoid']
+                               for gamma in [0.01, 0.1, 1, 10, 100]
+                               for degree in [2, 3, 4, 5]]
+        self.param_sets = {"logistic regression": self.lr_param_sets,
+                           "random forest": self.rf_param_sets,
+                           "svm": self.svm_param_sets,
+                           "xgboost": self.xgb_param_sets}
+
+        self.algo_dict = {"logistic regression": LogisticRegressionModel,
+                          "random forest": RandomForestModel,
+                          "svm": SVMModel,
+                          "xgboost": XGBoostModel}
 
     def save_model(self, model):  # Global Helper
         with open(ROOT_PATH + f"/models/{self.league}/{self.bet_type}_best.pickle", 'wb') as f:
@@ -115,9 +141,9 @@ class Trainer:
 if __name__ == '__main__':
     league = "NBA"
     bet_type = "Spread"
-    algo = "logistic regression"
+    algo = "xgboost"
     x = Trainer(league, bet_type)
     self = x
     # x.grid_search(algo)
-    # x.random_search(algo, 3)
-    x.coarse_to_fine_search(algo, 4, 2)
+    # x.random_search(algo, 10)
+    x.coarse_to_fine_search(algo, 10, 1)
