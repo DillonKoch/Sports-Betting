@@ -29,6 +29,7 @@ from src.models.logistic_regression import LogisticRegressionModel
 from src.models.random_forest import RandomForestModel
 from src.models.svm import SVMModel
 from src.models.xgboost_model import XGBoostModel
+from src.models.neural_net import NeuralNetModel
 
 warnings.filterwarnings('ignore')
 
@@ -60,15 +61,24 @@ class Trainer:
                                for kernel in ['linear', 'poly', 'rbf', 'sigmoid']
                                for gamma in [0.01, 0.1, 1, 10, 100]
                                for degree in [2, 3, 4, 5]]
+        self.nn_param_sets = [[n_games, feature_selection, architecture, batch_size, lr]
+                              for n_games in [3, 5, 10, 15, 25]
+                              for feature_selection in [None]   # TODO performing this on unused data!
+                              for architecture in [[1000, 750, 500, 200, 100, 50, 25], [500, 250, 150, 75, 10]]
+                              for batch_size in [32, 16]
+                              for lr in [0.01, 0.0001, 0.001]]
+
         self.param_sets = {"logistic regression": self.lr_param_sets,
                            "random forest": self.rf_param_sets,
                            "svm": self.svm_param_sets,
-                           "xgboost": self.xgb_param_sets}
+                           "xgboost": self.xgb_param_sets,
+                           "nn": self.nn_param_sets}
 
         self.algo_dict = {"logistic regression": LogisticRegressionModel,
                           "random forest": RandomForestModel,
                           "svm": SVMModel,
-                          "xgboost": XGBoostModel}
+                          "xgboost": XGBoostModel,
+                          "nn": NeuralNetModel}
 
     def save_model(self, model):  # Global Helper
         with open(ROOT_PATH + f"/models/{self.league}/{self.bet_type}_best.pickle", 'wb') as f:
@@ -158,12 +168,12 @@ class Trainer:
 
 if __name__ == '__main__':
     league = "NBA"
-    bet_type = "Total"
+    bet_type = "Spread"
     algo = "random forest"
     algos = ['logistic regression', 'random forest', 'xgboost']
     x = Trainer(league, bet_type)
     self = x
     # x.grid_search(algo)
-    x.random_search(algo, 20)
+    x.random_search(algo, 50)
     # x.coarse_to_fine_search(algo, 10, 1)
     # x.run_all_algos("random", algos)

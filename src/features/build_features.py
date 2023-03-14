@@ -318,6 +318,7 @@ class Build_Features:
         df = df.reset_index(drop=True)
         df = self.one_hot_encoding(df)
         df['Date'] = pd.to_datetime(df["Date"])
+        df.to_csv("temp.csv", index=False)
         future = df[df['Date'] >= datetime.datetime.today() - datetime.timedelta(days=1)]
         df = df[df['Date'] < datetime.datetime.today() - datetime.timedelta(days=1)]
 
@@ -328,7 +329,6 @@ class Build_Features:
         df = df.drop(columns=remove_cols + ['Home', 'Away'])
         future = future.drop(columns=remove_cols)
 
-        df.to_csv("temp.csv", index=False)
         future.to_csv("future.csv", index=False)
         # ! Dataset is fully created, time to partition and clean/build features
         # partition train/val/test
@@ -357,7 +357,7 @@ if __name__ == '__main__':
     for league in ['NBA']:
         x = Build_Features(league)
         self = x
-        # for n in [3, 5, 10, 15, 25]:
+        # for n in [3]:  # , 5, 10, 15, 25]:
         #     x.run(n_games=n)
         multithread(x.run, [3, 5, 10, 15, 25])
         # x.run(n_games=3)

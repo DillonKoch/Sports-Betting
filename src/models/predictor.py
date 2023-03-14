@@ -77,7 +77,7 @@ class Predictor:
 
 if __name__ == '__main__':
     league = "NBA"
-    bet_type = "Total"
+    bet_type = "Spread"
     x = Predictor(league, bet_type)
     self = x
     x.run()

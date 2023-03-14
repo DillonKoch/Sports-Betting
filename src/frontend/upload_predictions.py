@@ -76,7 +76,7 @@ class Upload_Predictions:
     def run(self):  # Run
         pred_df = pd.read_csv(ROOT_PATH + f"/data/predictions/{self.league}_predictions.csv")
         pred_df['Date'] = pd.to_datetime(pred_df['Date'])
-        recent_preds = pred_df.loc[pred_df['Date'] > datetime.datetime.today() - datetime.timedelta(days=7)]
+        recent_preds = pred_df.loc[pred_df['Date'] > datetime.datetime.today() - datetime.timedelta(days=3)]
         self.upload_preds(recent_preds)
 
 

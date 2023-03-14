@@ -57,6 +57,11 @@ class RandomForestModel(Model_Parent):
         self.val_acc = val_acc
         return val_acc
 
+    def predict(self, x):  # Run
+        if self.feature_selection:
+            x = self.selector.transform(x)
+        return self.model.predict(x)
+
 
 if __name__ == '__main__':
     x = RandomForestModel()

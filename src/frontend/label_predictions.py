@@ -61,23 +61,32 @@ class Label_Predictions:
                     continue
 
                 if row['Bet_Type'] == "Spread":
+                    outcome = None
                     home_bet_total = home_score + row['Bet_Value']
                     if home_bet_total > away_score:
-                        outcome = 1
+                        home_won = 1
                     elif home_bet_total == away_score:
                         outcome = 0.5
                     else:
-                        outcome = 0
+                        home_won = 0
+
+                    if not outcome:
+                        outcome = 1 if ((home_won and row['Prediction'] == 1) or ((not home_won) and row['Prediction'] == 0)) else 0
 
                 elif row['Bet_Type'] == 'Total':
+                    outcome = None
                     real_total = home_score + away_score
                     betting_total = row['Bet_Value']
+
                     if real_total > betting_total:
-                        outcome = 1
+                        over_hit = 1
                     elif real_total == betting_total:
                         outcome = 0.5
                     else:
-                        outcome = 0
+                        over_hit = 0
+
+                    if not outcome:
+                        outcome = 1 if ((over_hit and row['Prediction'] == 1) or ((not over_hit) and row['Prediction'] == 0)) else 0
 
                 row['Outcome'] = outcome
                 pred_df.iloc[i, :] = row
