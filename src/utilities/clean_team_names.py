@@ -51,9 +51,9 @@ class Clean_Team_Names:
 
 
 if __name__ == '__main__':
-    df_path = ROOT_PATH + "/data/external/espn/NBA/Games.csv"
+    df_path = ROOT_PATH + "/data/external/espn/NBA/Player_Stats.csv"
     league = "NBA"
 
     x = Clean_Team_Names(league)
     self = x
-    x.run(df_path, "Away")
+    x.run(df_path, "Team")

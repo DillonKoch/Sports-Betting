@@ -65,7 +65,11 @@ if __name__ == '__main__':
                     'Experience', 'Status', 'Team_History', 'Career_Highlights', 'scrape_ts']
     predictions = ['Date', 'Home', 'Away', 'Bet_Type', 'Bet_Value', 'Bet_ML', 'Prediction', 'Outcome',
                    'Model_Info', 'Accuracy', 'Train_ts', 'Pred_ts']
-    path = ROOT_PATH + "/data/predictions/predictions.json"
+    player_stats = ['Game_ID', 'Date', 'Team', 'Player', 'Player_ID', 'Position', 'Minutes', 'FG_Made',
+                    'FG_Att', '3PT_Made', '3PT_Att', 'FT_Made', 'FT_Att', 'Offensive_Rebounds',
+                    'Defensive_Rebounds', 'Total_Rebounds', 'Assists', 'Steals', 'Blocks', 'Turnovers',
+                    'Fouls', 'Plus_Minus', 'Points']
+    path = ROOT_PATH + "/data/external/espn/player_stats.json"
     x = Build_Data_Schema()
     self = x
-    x.run(path, predictions)
+    x.run(path, player_stats)

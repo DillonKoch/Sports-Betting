@@ -1,0 +1,209 @@
+{
+    "Game_ID": {
+        "type": "int",
+        "min": 0,
+        "max": 1000000000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Date": {
+        "type": "Date",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Team": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "teams",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Player_ID": {
+        "type": "int",
+        "min": 0,
+        "max": 1000000000,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": false
+    },
+    "Position": {
+        "type": "string",
+        "min": null,
+        "max": null,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Minutes": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "FG_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "FG_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 200,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "3PT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "3PT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "FT_Made": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "FT_Att": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Offensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Defensive_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Total_Rebounds": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Assists": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Steals": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Blocks": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Turnovers": {
+        "type": "float",
+        "min": 0,
+        "max": 100,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Fouls": {
+        "type": "float",
+        "min": 0,
+        "max": 10,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Plus_Minus": {
+        "type": "float",
+        "min": -200,
+        "max": 200,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    },
+    "Points": {
+        "type": "float",
+        "min": 0,
+        "max": 200,
+        "ranges": [],
+        "whitelist": "",
+        "regex": "",
+        "allow_null": true
+    }
+}

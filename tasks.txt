@@ -1,0 +1,17 @@
+/src/data
+- write espn_player_stats.py
+- 
+
+/data
+- 
+
+/features
+- new class/file for building player feature vectors
+- incorporate player features into build_features.py
+- use espn/caesars odds in build_features.py 
+
+/models
+- build deep learning model
+- 
+- 
+- 

@@ -329,7 +329,6 @@ class ESPN_Game:
         return game
 
     def _scrape_basketball(self, game, body):  # Specific Helper scrape_stats
-        # TODO accomodate stats split by dash
         split_stats = ['FG', '3PT', 'FT']
         rows = body.find_all('tr')
         start = 28
