@@ -13,6 +13,7 @@
 # ==============================================================================
 
 
+import datetime
 import sys
 import time
 import urllib.request
@@ -258,26 +259,22 @@ class ESPN_Player_Stats:
         self.cols = list(stats_df.columns)
         games_df = pd.read_csv(ROOT_PATH + f"/data/external/espn/{self.league}/Games.csv")
         schema_path = ROOT_PATH + "/data/external/espn/player_stats.json"
-        # self.test_data_schema.run(schema_path, df) # TODO uncomment
+        self.test_data_schema.run(schema_path, stats_df)
 
         new_game_ids = self.query_new_game_ids(games_df, stats_df)
         for new_game_id in tqdm(new_game_ids):
             try:
                 date, home, away = self.query_game_infos(games_df, new_game_id)
+
+                if datetime.datetime.strptime(date, '%Y-%m-%d') > (datetime.datetime.today() - datetime.timedelta(days=1)):
+                    continue
+
                 stats_link = self.get_stats_link(new_game_id)
                 stat_dict = self.scrape_stats(stats_link, new_game_id, date, home, away)
                 for key, val in stat_dict.items():
                     stats_df.loc[len(stats_df)] = val
                 stats_df.to_csv(self.df_path, index=False)
                 print("success")
-                # if not stat_dict:
-                #     # self.insert_blank(new_game_id, date)
-                #     pass
-                # else:
-                #     # for stat_list in stat_dict.values():
-                #     #     self.db_ops.insert_row(f"ESPN_Player_Stats_{self.league}", stat_list)
-                #     pass
-                # self.db.commit()
             except Exception as e:
                 print(e)
                 print("ERROR")
