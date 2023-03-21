@@ -30,6 +30,8 @@ ROOT_PATH = dirname(dirname(dirname(abspath(__file__))))
 if ROOT_PATH not in sys.path:
     sys.path.append(ROOT_PATH)
 
+from src.utilities.match_team import Match_Team
+
 
 def multithread(func, func_args):  # Multithreading
     with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -40,6 +42,7 @@ def multithread(func, func_args):  # Multithreading
 class Build_Features:
     def __init__(self, league):
         self.league = league
+        self.match_team = Match_Team(league)
 
     def _avg(self, lis):  # Specific Helper espn_game_avgs
         lis = [item for item in lis if isinstance(item, (int, float)) and not np.isnan(item)]
@@ -119,7 +122,6 @@ class Build_Features:
         pass
 
     def add_betting_odds(self, df):  # Top Level
-        # TODO add espn (caesar) odds, predict ML from spread
         betting_cols = ['Home_Line', 'Home_Line_ML', 'Away_Line', 'Away_Line_ML',
                         'Over', 'Over_ML', 'Under', 'Under_ML',
                         'Home_ML', 'Away_ML']
@@ -128,6 +130,7 @@ class Build_Features:
 
         sbro = pd.read_csv(ROOT_PATH + f"/data/interim/{self.league}/odds.csv")
         esb = pd.read_csv(ROOT_PATH + f"/data/external/esb/{self.league}/Game_Lines.csv")
+        espn = pd.read_csv(ROOT_PATH + f"/data/external/espn/{self.league}/Games.csv")
 
         for i, game in tqdm(enumerate(df.to_dict('records'))):
             home = game['Home']
@@ -136,6 +139,7 @@ class Build_Features:
 
             sbro_row = sbro.loc[(sbro['Date'] == date) & (((sbro['Home'] == home) & (sbro['Away'] == away)) | ((sbro['Home'] == away) & (sbro['Away'] == home)))]
             esb_row = esb.loc[(esb['Date'] == date) & (((esb['Home'] == home) & (esb['Away'] == away)) | ((esb['Home'] == away) & (esb['Away'] == home)))]
+            espn_row = espn.loc[(espn['Date'] == date) & (((espn['Home'] == home) & (espn['Away'] == away)) | ((espn['Home'] == away) & (espn['Away'] == home)))]
 
             # * SBRO odds
             if len(sbro_row) > 0:
@@ -160,6 +164,40 @@ class Build_Features:
                 df.at[i, 'Under_ML'] = list(esb_row['Under_ML'])[-1]
                 df.at[i, 'Home_ML'] = list(esb_row['Home_ML'])[-1]
                 df.at[i, 'Away_ML'] = list(esb_row['Away_ML'])[-1]
+            elif len(espn_row) > 0:
+                over_under = list(espn_row['Over_Under'])[0]
+                line_str = list(espn_row['Line'])[0]
+                if not (isinstance(over_under, (int, float)) and isinstance(line_str, str)):
+                    continue
+
+                if line_str == 'EVEN':
+                    home_line = 0
+                    away_line = 0
+                else:
+                    abbrev, line = line_str.split(' ')
+                    line = float(line)
+                    team = self.match_team.abbreviation_to_team[abbrev]
+                    if team == home:
+                        home_line = line
+                        away_line = line * -1
+                    else:
+                        away_line = line
+                        home_line = line * -1
+                print(home_line, away_line, over_under)
+                assert isinstance(home_line, (int, float)), f"home line {home_line} error"
+                assert isinstance(away_line, (int, float)), f"away line {away_line} error"
+                assert isinstance(over_under, (int, float)), f"over under {over_under} error"
+
+                df.at[i, 'Home_Line'] = home_line
+                df.at[i, 'Away_Line'] = away_line
+                df.at[i, 'Home_Line_ML'] = -110
+                df.at[i, 'Away_Line_ML'] = -110
+                df.at[i, 'Over'] = over_under
+                df.at[i, 'Over_ML'] = -110
+                df.at[i, 'Under'] = over_under
+                df.at[i, 'Under_ML'] = -110
+                df.at[i, 'Home_ML'] = None
+                df.at[i, 'Away_ML'] = None
 
         return df
 
@@ -350,8 +388,6 @@ class Build_Features:
         with open(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games_scaler.pickle", "wb") as f:
             pickle.dump(scaler, f)
 
-        # TODO balance classes while right about to train model (won't here bc multiple targets)
-
 
 if __name__ == '__main__':
     for league in ['NBA']:
@@ -359,5 +395,5 @@ if __name__ == '__main__':
         self = x
         # for n in [3]:  # , 5, 10, 15, 25]:
         #     x.run(n_games=n)
-        multithread(x.run, [3, 5, 10, 15, 25])
-        # x.run(n_games=3)
+        # multithread(x.run, [3, 5, 10, 15, 25])
+        x.run(n_games=3)

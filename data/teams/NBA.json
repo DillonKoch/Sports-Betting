@@ -89,7 +89,7 @@
             "Schedule": "https://www.espn.com/nba/team/schedule/_/name/det",
             "Roster": "https://www.espn.com/nba/team/roster/_/name/det/detroit-pistons",
             "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/det",
-            "Abbreviation": null
+            "Abbreviation": "DET"
         },
         "Indiana Pacers": {
             "Conference": "Central",
@@ -306,7 +306,7 @@
             "Schedule": "https://www.espn.com/nba/team/schedule/_/name/hou",
             "Roster": "https://www.espn.com/nba/team/roster/_/name/hou/houston-rockets",
             "Depth Chart": "https://www.espn.com/nba/team/depth/_/name/hou",
-            "Abbreviation": null
+            "Abbreviation": "HOU"
         },
         "Memphis Grizzlies": {
             "Conference": "Southwest",

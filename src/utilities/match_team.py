@@ -39,6 +39,14 @@ class Match_Team:
                 d[other_name] = key
         return d
 
+    @property
+    def abbreviation_to_team(self):  # Property
+        d = {}
+        for key in self.json['Teams'].keys():
+            abbrev = self.json['Teams'][key]['Abbreviation']
+            d[abbrev] = key
+        return d
+
     def run(self, team):  # Run
         if team in self.team_to_official:
             return self.team_to_official[team]
@@ -47,6 +55,6 @@ class Match_Team:
 
 
 if __name__ == '__main__':
-    x = Match_Team("NCAAF")
+    x = Match_Team("NBA")
     self = x
     x.run()
