@@ -104,7 +104,7 @@ Whether the models are strongly in favor of the outcome or on the fence, this ag
 
 ### Dynamic
 The [dynamic betting agent](/Agents/dynamic.py) wagers more money when the models are more confident.
-This agent can place anywhere from $5 to $15 on each bet.
+This agent can place anywhere from \$5 to \$15 on each bet.
 
 
 <a name="Frontend"></a>
