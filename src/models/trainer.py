@@ -40,11 +40,11 @@ class Trainer:
         self.bet_type = bet_type
 
         self.lr_param_sets = [[n_games, feature_selection]
-                              for n_games in [3, 5, 10, 15, 25]
+                              for n_games in [3, 5, 10, 15]
                               for feature_selection in [None, 25, 100, 200]]
 
         self.rf_param_sets = [[n_games, n_estimators, max_features, max_depth, feature_selection]
-                              for n_games in [3, 5, 10, 15, 25]
+                              for n_games in [3, 5, 10, 15]
                               for n_estimators in [10, 50, 100]
                               for max_features in ['sqrt', 'log2', 0.5]
                               for max_depth in [None, 5, 10, 20]
@@ -168,7 +168,7 @@ class Trainer:
 
 if __name__ == '__main__':
     league = "NBA"
-    bet_type = "Spread"
+    bet_type = "Total"
     algo = "random forest"
     algos = ['logistic regression', 'random forest', 'xgboost']
     x = Trainer(league, bet_type)

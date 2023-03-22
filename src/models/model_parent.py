@@ -43,9 +43,9 @@ class Model_Parent:
         return df_resampled
 
     def load_data(self):  # Top Level
-        train_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_train.csv"
-        val_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_val.csv"
-        test_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_test.csv"
+        train_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_player_stats_train.csv"
+        val_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_player_stats_val.csv"
+        test_path = ROOT_PATH + f"/data/processed/{self.league}/{self.n_games}games_player_stats_test.csv"
         train = pd.read_csv(train_path)
         val = pd.read_csv(val_path)
         test = pd.read_csv(test_path)
