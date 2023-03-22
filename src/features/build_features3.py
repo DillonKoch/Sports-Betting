@@ -1,17 +1,15 @@
 # ==============================================================================
-# File: build_features2.py
-# Project: allison
-# File Created: Sunday, 19th March 2023 3:56:53 pm
+# File: build_features3.py
+# Project: Sports-Betting
+# File Created: Tuesday, 21st March 2023 12:43:16 pm
 # Author: Dillon Koch
 # -----
-# Last Modified: Sunday, 19th March 2023 3:56:54 pm
+# Last Modified: Tuesday, 21st March 2023 12:43:18 pm
 # Modified By: Dillon Koch
 # -----
 #
 # -----
-# building features for ML with all data sources
 # ==============================================================================
-
 
 import datetime
 import os
@@ -37,25 +35,44 @@ from src.utilities.match_team import Match_Team
 class Build_Features:
     def __init__(self, league):
         self.league = league
-        self.football_league = league in ['NFL', 'NCAAF']
-        self.days_per_game = 7 if self.football_league else 4
-
         self.player_features = Player_Features(league)
         self.match_team = Match_Team(league)
 
-    def start_date(self, n_games, restart):  # Top Level
+    def load_checkpoint(self, n_games, player_stats):  # Top Level
         """
-        locating the date to start calculations
-        - if restarting, we compute everything since 2007
-        - else, the start date is n_games * self.days_per_game
+        This class saves checkpoints of datasets during computation
+        - if such a checkpoint exists, we'll load it here
         """
-        if restart:
-            start_date = datetime.datetime(2000, 1, 1)
+        pstats_str = "_player_stats" if player_stats else ""
+        path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_checkpoint.csv"
+        if os.path.exists(path):
+            df = pd.read_csv(path)
+            df['Date'] = pd.to_datetime(df['Date'])
+            return df
+        return None
+
+    def _espn_start_date(self, checkpoint_df):  # Specific Helper espn_avgs
+        """
+        locating the date to begin espn avgs computations
+        """
+        if checkpoint_df is None:
+            return datetime.datetime(2007, 1, 1)
         else:
-            start_date = datetime.datetime.today() - datetime.timedelta(days=n_games * self.days_per_game)
-        return start_date
+            # * building a dict of team appearances, returning day before each team appears n times
+            d = {team: 0 for team in self.match_team.valid_teams}
+            homes = list(checkpoint_df['Home'])[::-1]
+            aways = list(checkpoint_df['Away'])[::-1]
+            dates = list(checkpoint_df['Date'])[::-1]
+            for home, away, date in zip(homes, aways, dates):
+                d[home] += 1
+                d[away] += 1
+                if min(d.values()) >= n_games:
+                    return date - datetime.timedelta(days=1)
 
     def _load_espn_games(self, start_date):  # Specific Helper espn_game_avgs
+        """
+        Loading the Games.csv file from ESPN, cleaning, and removing games before start_date
+        """
         espn_games = pd.read_csv(ROOT_PATH + f"/data/external/espn/{self.league}/Games.csv")
         espn_games['Date'] = pd.to_datetime(espn_games['Date'])
         espn_games = espn_games.loc[espn_games['Date'] >= start_date]
@@ -63,10 +80,12 @@ class Build_Features:
         espn_games = espn_games.loc[(espn_games['Date'].notnull()) & (espn_games['Home'].notnull()) & (espn_games['Away'].notnull())]
         espn_games['HOT'] = espn_games['HOT'].fillna(0)
         espn_games['AOT'] = espn_games['AOT'].fillna(0)
-        # espn_games = espn_games.iloc[:201, :]  # ! REMOVE REMOVE REMOVE REMOVE REMOVE
         return espn_games
 
     def _empty_stat_dict(self, espn_games):  # Specific Helper espn_game_avgs
+        """
+        building an empty dict to track ESPN team stats
+        """
         teams = set([team for team in espn_games['Home'] if isinstance(team, str)])
         stats = list(espn_games.columns)[12:]
         d = {}
@@ -121,53 +140,50 @@ class Build_Features:
         new_row['Total'] = game['Home_Final'] + game['Away_Final']
         return new_row
 
-    def _populate_avgs_df(self, avgs_df, espn_games, stat_dict, n_games):  # Specific Helper espn_game_avgs
+    def _player_stats_to_new_row(self, row, n_games):  # Helping Helper _populate_avgs_df
+        home = list(row['Home'])[0]
+        away = list(row['Away'])[0]
+        date = list(row['Date'])[0]
+
+        home_player_stats, player_cols = self.player_features.run(home, date, n_games)
+        away_player_stats, player_cols = self.player_features.run(away, date, n_games)
+
+        for home_away in ['Home', 'Away']:
+            for col_name in player_cols:
+                row[f'{home_away}_{col_name}'] = None
+
+        all_player_stats = home_player_stats + away_player_stats
+        row.iloc[0, -len(all_player_stats):] = all_player_stats
+        return row
+
+    def _populate_avgs_df(self, avgs_df, espn_games, stat_dict, n_games, player_stats):  # Specific Helper espn_game_avgs
         stats = list(espn_games.columns)[12:]
-        for game in tqdm(espn_games.to_dict('records')):
+        for i, game in tqdm(enumerate(espn_games.to_dict('records'))):
             if game['Date'] > datetime.datetime.now() + datetime.timedelta(days=7):
                 continue
             new_row, stat_dict = self._game_to_row(game, avgs_df, stats, stat_dict, n_games)
             new_row = self._targets_to_new_row(game, new_row)
+            new_row = self._player_stats_to_new_row(new_row, n_games) if player_stats else new_row
             avgs_df = pd.concat([avgs_df, new_row], ignore_index=True)
 
-        return avgs_df
-
-    def espn_game_avgs(self, n_games, start_date):  # Top Level
-        espn_games = self._load_espn_games(start_date)
-        stat_dict = self._empty_stat_dict(espn_games)
-        avgs_df = self._empty_avgs_df(espn_games)
-        avgs_df = self._populate_avgs_df(avgs_df, espn_games, stat_dict, n_games)
-        return avgs_df
-
-    def add_player_stats(self, df, n_games, last_date=None):  # Top Level
-
-        for i, game in tqdm(enumerate(df.to_dict('records'))):
-            home = game['Home']
-            away = game['Away']
-            date = game['Date']
-            if last_date and (date < last_date):
-                continue
-
-            home_player_stats, player_cols = self.player_features.run(home, date, n_games)
-            away_player_stats, player_cols = self.player_features.run(away, date, n_games)
-
-            # * adding cols to df if needed
-            if i == 0 and last_date is None:
-                for home_away in ['Home', 'Away']:
-                    for col_name in player_cols:
-                        df[f'{home_away}_{col_name}'] = None
-
-            all_player_stats = home_player_stats + away_player_stats
-            row_vals = list(df.iloc[i, :])
-            row_vals[-len(all_player_stats):] = all_player_stats
-            df.iloc[i, :] = row_vals
-
-            if i % 100 == 0:
+            if i % 100 == 0 or i == len(espn_games):
                 pstats_str = "_player_stats" if player_stats else ""
                 path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_checkpoint.csv"
-                df.to_csv(path, index=False)
+                avgs_df = avgs_df.drop_duplicates(subset=['Date', 'Home', 'Away'], keep='first')
+                # avgs_df = avgs_df.loc[avgs_df['Date'] < datetime.datetime.today()]
+                save_df_no_future = avgs_df.loc[avgs_df['Date'] < datetime.datetime.today() - datetime.timedelta(days=1)]
+                save_df_no_future.to_csv(path, index=False)
+                print(f'saved at {i}')
 
-        return df
+        return avgs_df
+
+    def espn_avgs(self, checkpoint_df, n_games, player_stats):  # Top Level
+        start_date = self._espn_start_date(checkpoint_df)
+        espn_games = self._load_espn_games(start_date)
+        stat_dict = self._empty_stat_dict(espn_games)
+        avgs_df = checkpoint_df if checkpoint_df is not None else self._empty_avgs_df(espn_games)
+        avgs_df = self._populate_avgs_df(avgs_df, espn_games, stat_dict, n_games, player_stats)
+        return avgs_df
 
     def _add_betting_cols(self, df):  # Specific Helper add_betting_odds
         betting_cols = ['Home_Line', 'Home_Line_ML', 'Away_Line', 'Away_Line_ML',
@@ -315,6 +331,20 @@ class Build_Features:
 
         return df
 
+    def remove_null_rows_cols(self, df):  # Top Level
+        if self.league == 'NCAAB':
+            remove_cols = [col for col in list(df.columns) if col.endswith('Q')]
+        else:
+            remove_cols = [col for col in list(df.columns) if col.endswith('H')]
+        print(remove_cols)
+        df = df.drop(columns=remove_cols)
+
+        # using this col to measure whether we've reached a game with avg stats
+        drop_col = 'Home_Home_H1H' if self.league == 'NCAAB' else 'Home_Home_H1Q'
+        df = df.loc[df[drop_col].notnull()]
+        df = df.reset_index(drop=True)
+        return df
+
     def past_future_dfs(self, df):  # Top Level
         remove_cols = ['Game_ID', 'Season', 'Week', 'Final_Status']
 
@@ -395,9 +425,6 @@ class Build_Features:
 
         return train_final, val_final, test_final, future_final, scaler
 
-    def merge_with_existing_df(self):  # Top Level
-        pass
-
     def save_data(self, train, val, test, future, scaler, n_games, player_stats):  # Top Level
         pstats_str = "_player_stats" if player_stats else ""
         train.to_csv(ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_train.csv", index=False)
@@ -408,60 +435,18 @@ class Build_Features:
             pickle.dump(scaler, f)
         print("SAVED")
 
-    # def save_data(self, train, val, test, future, scaler, n_games, player_stats):  # Top Level
-    #     pstats_str = "_player_stats" if player_stats else ""
-    #     train_path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_train.csv"
-    #     val_path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_val.csv"
-    #     test_path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_test.csv"
-    #     future_path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_future.csv"
-
-    #     dfs = [train, val, test, future]
-    #     paths = [train_path, val_path, test_path, future_path]
-
-    #     for df, path in zip(dfs, paths):
-    #         if os.path.exists(path):
-    #             old_df = pd.read_csv(path)
-    #             df = pd.concat([old_df, df], axis=1)
-    #             df.drop_duplicates(subset=['Game_ID'], keep='last')
-
-    def load_checkpoint(self, n_games, player_stats):  # Top Level
-        pstats_str = "_player_stats" if player_stats else ""
-        path = ROOT_PATH + f"/data/processed/{self.league}/{n_games}games{pstats_str}_checkpoint.csv"
-        if os.path.exists(path):
-            df = pd.read_csv(path)
-            df['Date'] = pd.to_datetime(df['Date'])
-            last_date = list(df['Date'])[-1]
-            return df, last_date
-        return None, None
-
-    def run(self, n_games, player_stats=True, partition='val_test_recent', restart=False):  # Run
-        # start_date = self.start_date(n_games, restart)
-        # if restart:
-        #     df = self.espn_game_avgs(n_games, datetime.datetime.date(2007, 1, 1))
-        #     df = self.add_player_stats(df, n_games) if player_stats else df
-        # else:
-        #     checkpoint_df, last_date = self.load_checkpoint(n_games, player_stats)
-        #     df = self.espn_game_avgs(n_games, last_date) if last_date is not None else self.espn_game_avgs(n_games, datetime.datetime(2007, 1, 1))
-        #     df = pd.concat([checkpoint_df, df]) if checkpoint_df is not None else df
-        #     df = self.add_player_stats(df, n_games, last_date) if player_stats else df
-        #     df.drop_duplicates(subset=['Home', 'Away', 'Date'], keep='first')
-        # * if it's in the checkpoint, it's fucking legit
+    def run(self, n_games, player_stats, partition='val_test_recent'):  # Run
+        # load df if it exists, else return None
         checkpoint_df = self.load_checkpoint(n_games, player_stats)
-        start_date = list(checkpoint_df['Date'])[-1] - datetime.timedelta(days=n_games * self.teams)
-        df = self.espn_game_avgs(n_games, start_date)
-        df = pd.concat([checkpoint_df, df])
-        df = self.add_player_stats(df, n_games)  # determine if you have to add or not for each row
-        df.drop_duplicates(subset=['Home', 'Away', 'Date'], keep='first')
+        # use checkpoint_df to find date to start computing new avgs
+        # checkpoint_df has only comleted games, nothing in the future
+        # add player stats if desired in espn_avgs function AT ONCE (both at same time)
+        # drop duplicates
+        df = self.espn_avgs(checkpoint_df, n_games, player_stats)
 
         df = self.add_betting_odds(df)
         df = self.one_hot_encoding(df)
-
-        # df = df.dropna(thresh=df.shape[1] - 50)  # * removing rows with 50+ missing vals (no stats or 2007 start games)
-        df = df.loc[df['Home_Home_H1Q'].notnull()]
-        df = df.reset_index(drop=True)
-        # not removing cols without home_line/over # TODO do this in dataset class
-
-        # TODO data augmentation, save that in another "augmented" file and merge in dataset
+        df = self.remove_null_rows_cols(df)
 
         past, future = self.past_future_dfs(df)
         train, val, test = self.partition_data(past, partition)
@@ -471,12 +456,12 @@ class Build_Features:
 
 
 if __name__ == '__main__':
-    league = 'NBA'
+    league = "NBA"
     n_games = 3
     player_stats = True
 
     x = Build_Features(league)
     self = x
-    x.run(n_games, player_stats)
-    # for n_games in [5, 10, 15, 25]:
-    #     x.run(n_games, player_stats)
+    # x.run(n_games, player_stats)
+    for n_games in [5, 10, 15, 25]:
+        x.run(n_games, player_stats)
